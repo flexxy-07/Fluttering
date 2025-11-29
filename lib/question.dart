@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './question.dart';
 
 class Question extends StatelessWidget {
-  String questionText;
+  final String questionText;
 
   Question(this.questionText);
   @override
