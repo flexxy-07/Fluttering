@@ -1,6 +1,6 @@
-import 'package:first_app/answer.dart';
-import 'package:first_app/question.dart';
+import 'package:first_app/result.dart';
 import 'package:flutter/material.dart';
+import './quiz.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const questions = [
+    const _questions = [
       {
         'question': 'Who\'s the strongest Hashira ?',
         'answers': ['Uzui', 'Rengoku', 'Gyomei', 'Mushiro'],
@@ -39,16 +39,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('Hashira Quiz')),
-        body: _questionIndex < questions.length
-            ? Column(
-                children: <Widget>[
-                  Question(questions[_questionIndex]['question'] as String),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      .map((answer) => Answer(_answerQuestion, answer))
-                      .toList(),
-                ],
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questions: _questions,
+                questionIndex: _questionIndex,
               )
-            : Center(child: Text('We blew through the questions!')),
+            : Result(),
       ),
     );
   }
