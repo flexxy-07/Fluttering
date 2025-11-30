@@ -15,11 +15,7 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   void _answerQuestion() {
     setState(() {
-      if (_questionIndex < 2) {
-        _questionIndex++;
-      } else {
-        _questionIndex = 0;
-      }
+      _questionIndex++;
     });
   }
 
@@ -36,21 +32,23 @@ class _MyAppState extends State<MyApp> {
       },
       {
         'question': 'Who will fight upperMoon 1?',
-        'answers': ['Tanjiro', 'Gyomie', 'SnakeHashira', 'Mitsuri'],
+        'answers': ['Tanjiro', 'Gyomei', 'Sanemi', 'Mushiro'],
       },
     ];
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('myApp')),
-        body: Column(
-          children: <Widget>[
-            Question(questions[_questionIndex]['question'] as String),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) => Answer(_answerQuestion, answer))
-                .toList(),
-          ],
-        ),
+        appBar: AppBar(title: Text('Hashira Quiz')),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: <Widget>[
+                  Question(questions[_questionIndex]['question'] as String),
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((answer) => Answer(_answerQuestion, answer))
+                      .toList(),
+                ],
+              )
+            : Center(child: Text('We blew through the questions!')),
       ),
     );
   }
