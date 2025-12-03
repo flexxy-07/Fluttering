@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
   final Function selectHandler;
   final String answer;
-  Answer(this.selectHandler, this.answer);
+  const Answer(this.selectHandler, this.answer, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
       
